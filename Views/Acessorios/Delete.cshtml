@@ -1,0 +1,31 @@
+﻿@model Cars.Models.Acessorio
+
+@{
+    ViewData["Title"] = "Excluir acessório";
+}
+
+<h2>Excluir realmente este acessório?</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            ID
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.AcessorioId)
+        </dd>
+        <dt>
+            Nome
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+    </dl>
+    @ViewData["Message"]
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="AcessorioId" />
+        <input type="submit" value="Excluir" class="btn btn-default" /> |
+        <a asp-action="Index">Voltar para a lista</a>
+    </form>
+</div>

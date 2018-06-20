@@ -1,0 +1,83 @@
+﻿@model Cars.Models.Carro
+
+@{
+    ViewData["Title"] = "Detalhes do carro";
+}
+
+<h2>Detalhes do carro</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            ID
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CarroId)
+        </dd>
+        <dt>
+            Marca
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Marca)
+        </dd>
+        <dt>
+            Data da compra
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DataCompra)
+        </dd>
+        <dt>
+            Descrição
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Descricao)
+        </dd>
+        <dt>
+            Cor
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cor)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.CarroId">Editar</a> |
+    <a asp-action="Index">Voltar para a lista</a>
+</div>
+
+<h2>Acessórios do carro</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                ID do acessório
+            </th>
+            <th>
+                Nome
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.CarroAcessorios)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarroAcessorioId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AcessorioId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Acessorio.Nome)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

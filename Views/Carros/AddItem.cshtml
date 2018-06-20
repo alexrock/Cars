@@ -1,0 +1,42 @@
+﻿@model Cars.Models.Carro
+
+@{
+    ViewData["Title"] = "Adicionar acessório";
+}
+
+<h2>Adicionar acessório</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Nome
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Acessorios)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AcessorioId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    <form asp-action="AddItem" asp-route-id="@item.AcessorioId">
+                        <input name="carroId" type="hidden" asp-for="CarroId" />
+                        <input type="submit" value="Adicionar" class="btn btn-link" />
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Edit" asp-route-id="@Model.CarroId">Cancelar</a>

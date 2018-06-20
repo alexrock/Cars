@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Cars.Models.Acessorio>
+
+@{
+    ViewData["Title"] = "Acessórios";
+}
+
+<h2>Acessórios</h2>
+
+<p>
+    <a asp-action="Create">Novo acessório</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Nome
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AcessorioId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.AcessorioId">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.AcessorioId">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.AcessorioId">Excluir</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

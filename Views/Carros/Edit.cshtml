@@ -1,0 +1,96 @@
+﻿@model Cars.Models.Carro
+
+@{
+    ViewData["Title"] = "Editar carro";
+}
+
+<h2>Editar carro</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CarroId" />
+            <div class="form-group">
+                <label class="control-label">ID</label>
+                <input asp-for="CarroId" class="form-control" disabled />
+            </div>
+            <div class="form-group">
+                <label class="control-label">Marca</label>
+                <input asp-for="Marca" class="form-control" />
+                <span asp-validation-for="Marca" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Data da compra</label>
+                <div class="input-group date" data-provide="datepicker" data-date-language="pt-BR">
+                    <input asp-for="DataCompra" type="text" class="form-control">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-th"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Descrição</label>
+                <input asp-for="Descricao" class="form-control" />
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Cor</label>
+                <select asp-for="Cor" asp-items="Carro.Cores" class="form-control"></select>
+                <span asp-validation-for="Cor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Voltar para a lista</a>
+</div>
+
+<h2>Acessórios do carro</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                ID Acessório
+            </th>
+            <th>
+                Nome
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.CarroAcessorios)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CarroAcessorioId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AcessorioId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Acessorio.Nome)
+                </td>
+                <td>
+                    <a asp-action="DeleteItem" asp-route-id="@item.CarroAcessorioId">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="AddItem" asp-route-id="@Model.CarroId">Adicionar acessório</a>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

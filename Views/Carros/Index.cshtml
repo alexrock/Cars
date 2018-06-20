@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Cars.Models.Carro>
+
+@{
+    ViewData["Title"] = "Carros";
+}
+
+<h2>Carros</h2>
+
+<p>
+    <a asp-action="Create">Novo carro</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Marca
+            </th>
+            <th>
+                Data da compra
+            </th>
+            <th>
+                Descrição
+            </th>
+            <th>
+                Cor
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarroId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataCompra)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cor)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.CarroId">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.CarroId">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.CarroId">Excluir</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
